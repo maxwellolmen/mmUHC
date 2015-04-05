@@ -145,7 +145,6 @@ public class Arena {
 			File world = new File(Main.getPlugin().getDataFolder().getParentFile().getPath() + "\\" + id);
 			world.delete();
 			
-			
 			resetCounters();
 			
 			players.clear();

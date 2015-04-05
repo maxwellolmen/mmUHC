@@ -21,7 +21,9 @@ public class CommandManager implements CommandExecutor {
 		cmds.add(new CreateArena());
 		cmds.add(new ForceStart());
 		cmds.add(new Join());
+		cmds.add(new Leave());
 		cmds.add(new RemoveArena());
+		cmds.add(new SetLobby());
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

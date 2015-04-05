@@ -1,5 +1,7 @@
 package mcm.Maxxwell.mmUHC;
 
+import mcm.Maxxwell.mmUHC.listeners.*;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -21,6 +23,12 @@ public class Main extends JavaPlugin {
 		
 		PluginManager pm = getServer().getPluginManager();
 		pm.addPermission(new Permission("mmUHC.admin"));
+		
+		pm.registerEvents(new EntityDamage(), this);
+		pm.registerEvents(new EntityDamageByEntity(), this);
+		pm.registerEvents(new PlayerJoin(), this);
+		pm.registerEvents(new PlayerLeave(), this);
+		pm.registerEvents(new PlayerMove(), this);
 	}
 	
 	public static Plugin getPlugin() {
@@ -38,12 +46,12 @@ public class Main extends JavaPlugin {
 	
 	public static Location loadLocation(ConfigurationSection section) {
 		return new Location(
-				Bukkit.getServer().getWorld(section.getString("world")),
-				section.getDouble("x"),
-				section.getDouble("y"),
-				section.getDouble("z"),
-				(float) section.getDouble("pitch"),
-				(float) section.getDouble("yaw")
-			);
+			Bukkit.getServer().getWorld(section.getString("world")),
+			section.getDouble("x"),
+			section.getDouble("y"),
+			section.getDouble("z"),
+			(float) section.getDouble("pitch"),
+			(float) section.getDouble("yaw")
+		);
 	}
 }
