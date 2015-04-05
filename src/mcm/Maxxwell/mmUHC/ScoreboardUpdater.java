@@ -2,6 +2,7 @@ package mcm.Maxxwell.mmUHC;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -19,9 +20,19 @@ public class ScoreboardUpdater extends Thread {
 	}
 	
 	public void run() {
-		board.registerNewObjective(arena.getID(), "dumy");
+		board.registerNewObjective(arena.getID(), "dummy");
 		
 		while (true) {
+			board.resetScores(ChatColor.GRAY + "Awaiting Players");
+			for (int i = 0; i < 31; i ++) {
+				board.resetScores(ChatColor.YELLOW + "Countdown: " + i);
+			}
+			board.resetScores(ChatColor.GREEN + "Grace Period");
+			board.resetScores(ChatColor.RED + "Battle Period");
+			board.resetScores(ChatColor.RED + "Error");
+			for (int i = 0; i < 11; i++) {
+				board.resetScores(ChatColor.GREEN + "Players: " + i);
+			}
 			
 			Objective obj = board.getObjective(arena.getID());
 			obj.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -31,15 +42,47 @@ public class ScoreboardUpdater extends Thread {
 			switch(arena.getState()) {
 			case WAITING:
 				state = obj.getScore(ChatColor.GRAY + "Awaiting Players");
+				break;
 			case COUNTDOWN:
 				state = obj.getScore(ChatColor.YELLOW + "Countdown: " + arena.getCount());
+				break;
 			case GRACE:
 				state = obj.getScore(ChatColor.GREEN + "Grace Period");
+				break;
 			case BATTLE:
 				state = obj.getScore(ChatColor.RED + "Battle Period");
+				break;
+			default:
+				state = obj.getScore(ChatColor.RED + "Error");
 			}
 			
-			state.setScore(arg0)
+			state.setScore(4);
+			
+			Score aliveplayers;
+			
+			aliveplayers = obj.getScore(ChatColor.GREEN + "Players: " + arena.getPlayers().size());
+			
+			aliveplayers.setScore(3);
+			
+			Score time;
+			
+			int minutes = 0;
+			int seconds = arena.getCount();
+			
+			if (seconds >= 60) {
+				while (seconds >= 60) {
+					seconds-=60;
+					minutes++;
+				}
+			}
+			
+			time = obj.getScore(ChatColor.GOLD + "Time: " + minutes + "m" + seconds + "s");
+			
+			time.setScore(2);
+			
+			for (Player p : arena.getPlayers()) {
+				p.setScoreboard(board);
+			}
 		}
 	}
 }

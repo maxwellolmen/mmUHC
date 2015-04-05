@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import mcm.Maxxwell.mmUHC.Arena.ArenaState;
 
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -36,7 +35,7 @@ public class Countdown extends Thread {
 				arena.startCounters();
 				
 				for (Player p : arena.getPlayers()) {
-					p.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.GREEN + "The game has begun!");
+					p.sendMessage(Main.good + "The game has begun!");
 					
 					p.setHealth(20.0D);
 					p.setGameMode(GameMode.SURVIVAL);
@@ -47,7 +46,7 @@ public class Countdown extends Thread {
 				
 				if (cNums.contains(i)) {
 					for (Player p : arena.getPlayers()) {
-						p.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.GREEN + "The game will begin in " + i + " seconds!");
+						p.sendMessage(Main.info + "The game will begin in " + i + " seconds!");
 					}
 				}
 			}

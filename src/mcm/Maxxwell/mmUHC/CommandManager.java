@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
+import mcm.Maxxwell.mmUHC.cmds.*;
+
 public class CommandManager implements CommandExecutor {
 	private ArrayList<GameCommand> cmds;
 	
 	protected CommandManager() {
 		cmds = new ArrayList<GameCommand>();
+		
+		cmds.add(new CreateArena());
+		cmds.add(new ForceStart());
+		cmds.add(new Join());
+		cmds.add(new RemoveArena());
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -29,7 +35,7 @@ public class CommandManager implements CommandExecutor {
 			if (args.length == 0) {
 				for (GameCommand gcmd : cmds) {
 					CommandInfo info = gcmd.getClass().getAnnotation(CommandInfo.class);
-					p.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.GREEN + "/uhc (" + StringUtils.join(info.aliases(), " ").trim() + ") " + info.usage() + " - " + info.description());
+					p.sendMessage(Main.good + "/uhc (" + StringUtils.join(info.aliases(), " ").trim() + ") " + info.usage() + " - " + info.description());
 				}
 				
 				return true;
@@ -48,12 +54,12 @@ public class CommandManager implements CommandExecutor {
 			}
 			
 			if (wanted == null) {
-				p.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + ">> " + ChatColor.RED + "Could not find command.");
+				p.sendMessage(Main.warning + "Could not find command.");
 				return true;
 			}
 			
 			if (wanted.getClass().getAnnotation(CommandInfo.class).perms() && !p.hasPermission(new Permission("mmUHC.admin"))) {
-				p.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + ">> " + ChatColor.RED + "You do not have permission to use this command.");
+				p.sendMessage(Main.warning + "You do not have permission to use this command.");
 				return true;
 			}
 			

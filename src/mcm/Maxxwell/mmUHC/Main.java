@@ -1,6 +1,7 @@
 package mcm.Maxxwell.mmUHC;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.permissions.Permission;
@@ -9,6 +10,10 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
+	public static String warning = ChatColor.DARK_RED + "" + ChatColor.BOLD + ">> " + ChatColor.RED;
+	public static String info = ChatColor.GRAY + "" + ChatColor.BOLD + ">> " + ChatColor.YELLOW;
+	public static String good = ChatColor.DARK_GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.GREEN;
+	
 	public void onEnable() {
 		ArenaManager.getInstance().setup();
 		

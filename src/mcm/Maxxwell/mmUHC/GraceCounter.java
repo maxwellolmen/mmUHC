@@ -1,6 +1,5 @@
 package mcm.Maxxwell.mmUHC;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import mcm.Maxxwell.mmUHC.Arena.ArenaState;
@@ -28,7 +27,7 @@ public class GraceCounter extends Thread {
 			if (counter == 600) {
 				arena.setState(ArenaState.BATTLE);
 				for (Player p : arena.getPlayers()) {
-					p.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + ">> " + ChatColor.RED + "Grace period has ended! You may now attack other players.");
+					p.sendMessage(Main.info + "Grace period has ended! You may now attack other players.");
 				}
 			}
 		}

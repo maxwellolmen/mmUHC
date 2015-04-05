@@ -83,12 +83,12 @@ public class Arena {
 	
 	public void addPlayer(Player p) {
 		if (state == ArenaState.GRACE || state == ArenaState.BATTLE) {
-			p.sendMessage(ChatColor.DARK_RED + "" + ChatColor.BOLD + ">> " + ChatColor.RED + "That arena has already started.");
+			p.sendMessage(Main.warning + "That arena has already started.");
 			return;
 		}
 		
 		if (players.size() > 9) {
-			p.sendMessage(ChatColor.RED + "This arena is already full.");
+			p.sendMessage(Main.warning + "This arena is already full.");
 		}
 		
 		Random r1 = new Random(), r2 = new Random();
@@ -100,7 +100,7 @@ public class Arena {
 		
 		p.getInventory().clear();
 		
-		p.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.GREEN + "You have joined arena " + id + ".");
+		p.sendMessage(Main.good + "You have joined arena " + id + ".");
 		
 		if (players.size() >= 10 && state == ArenaState.WAITING) {
 			this.state = ArenaState.COUNTDOWN;
@@ -125,7 +125,7 @@ public class Arena {
 		
 		if (players.size() <= 1) {
 			if (players.size() == 1) {
-				Bukkit.getServer().broadcastMessage(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + ">> " + ChatColor.GREEN + players.get(0).getName() + " has won arena " + id + "!");
+				Bukkit.getServer().broadcastMessage(Main.good + players.get(0).getName() + " has won arena " + id + "!");
 				
 				if (!SettingsManager.getConfig().contains("lobby")) {
 					players.get(0).getInventory().clear();
@@ -144,6 +144,7 @@ public class Arena {
 			Bukkit.unloadWorld(world, false);
 			File world = new File(Main.getPlugin().getDataFolder().getParentFile().getPath() + "\\" + id);
 			world.delete();
+			
 			
 			resetCounters();
 			
@@ -172,5 +173,9 @@ public class Arena {
 	
 	public int getCount() {
 		return cd.getCount();
+	}
+	
+	public void startCountdown() {
+		cd.start();
 	}
 }
