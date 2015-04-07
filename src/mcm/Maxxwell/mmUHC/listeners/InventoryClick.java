@@ -24,6 +24,10 @@ public class InventoryClick implements Listener {
 			return;
 		}
 		
+		if (e.getCurrentItem().getItemMeta() == null) {
+			return;
+		}
+		
 		String itemname = e.getCurrentItem().getItemMeta().getDisplayName();    
 		
 		if (ArenaManager.getInstance().getArena(p) != null) {
