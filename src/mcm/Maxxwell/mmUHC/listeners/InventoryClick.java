@@ -16,15 +16,15 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 public class InventoryClick implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
-		Player p = (Player) e.getWhoClicked();
+		Bukkit.getLogger().info("Someone has attempted to join an arena.");
 		
-		Bukkit.getLogger().warning(p.getName() + " has attempted to join an arena.");
+		Player p = (Player) e.getWhoClicked();
 		
 		if (e.getCurrentItem() == null) {
 			return;
 		}
 		
-		String itemname = e.getCurrentItem().getItemMeta().getDisplayName();
+		String itemname = e.getCurrentItem().getItemMeta().getDisplayName();    
 		
 		if (ArenaManager.getInstance().getArena(p) != null) {
 			Bukkit.getLogger().warning(p.getName() + " attempted to join an arena but they were already in an arena.");
@@ -32,7 +32,7 @@ public class InventoryClick implements Listener {
 		}
 		
 		if (!e.getInventory().getName().equals("Join an Arena")) {
-			Bukkit.getLogger().warning(p.getName() + " attempted to join an arena but the inventory had an incorrect name.");
+			Bukkit.getLogger().warning(p.getName() + " attempted to join an arena but the item did not start with Arena.");
 			return;
 		}
 		
@@ -42,7 +42,7 @@ public class InventoryClick implements Listener {
 		}
 		
 		if (!ChatColor.stripColor(itemname).split(" ")[0].equals("Arena")) {
-			Bukkit.getLogger().warning(p.getName() + " attempted to join an arena but the item did not start with Arena.");
+			Bukkit.getLogger().warning(p.getName() + " attempted to join an arena but the inventory had an incorrect name.");
 			return;
 		}
 		
