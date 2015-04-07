@@ -21,6 +21,10 @@ public class ArenaManager {
 	public void setup() {
 		arenas.clear();
 		
+		if (!SettingsManager.getArenas().contains("arenas")) {
+			return;
+		}
+		
 		for (String arenaID : SettingsManager.getArenas().<List<String>>get("arenas")) {
 			arenas.add(new Arena(arenaID));
 		}

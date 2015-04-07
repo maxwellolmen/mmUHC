@@ -23,7 +23,7 @@ public class CreateArena extends GameCommand {
 		String name = args[0];
 		
 		if (ArenaManager.getInstance().getArena(name) != null) {
-			p.sendMessage(Main.warning + "An arena with that name does not exist.");
+			p.sendMessage(Main.warning + "An arena with that name already exists.");
 			return;
 		}
 		

@@ -70,7 +70,7 @@ public class Join extends GameCommand {
 			
 			ItemMeta im = item.getItemMeta();
 			
-			im.setDisplayName(ChatColor.RED + "Arena " + (i + 1));
+			im.setDisplayName(ChatColor.RED + "Arena " + a.getID());
 			
 			List<String> lore = new ArrayList<String>();
 			lore.add(ChatColor.GREEN + "" + alive + " Remaining Players");

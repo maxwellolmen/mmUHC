@@ -16,6 +16,8 @@ public class SetLobby extends GameCommand {
 		
 		Main.saveLocation(loc, SettingsManager.getConfig().createSection("lobby"));
 		
+		SettingsManager.getConfig().save();
+		
 		p.sendMessage(Main.good + "Set lobby.");
 	}
 }

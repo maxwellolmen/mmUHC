@@ -29,6 +29,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerJoin(), this);
 		pm.registerEvents(new PlayerLeave(), this);
 		pm.registerEvents(new PlayerMove(), this);
+		pm.registerEvents(new InventoryClick(), this);
 	}
 	
 	public static Plugin getPlugin() {

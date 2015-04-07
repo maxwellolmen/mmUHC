@@ -4,3 +4,5 @@ description: The UHC plugin.
 version: Beta 1.1
 author: Maxwell3103
 commands:
+  uhc:
+    description: The main command for UHC.

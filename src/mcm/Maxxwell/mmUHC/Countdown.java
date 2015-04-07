@@ -41,13 +41,14 @@ public class Countdown extends Thread {
 					p.setGameMode(GameMode.SURVIVAL);
 					
 					this.interrupt();
-					return;
+					break;
 				}
-				
-				if (cNums.contains(i)) {
-					for (Player p : arena.getPlayers()) {
-						p.sendMessage(Main.info + "The game will begin in " + i + " seconds!");
-					}
+			}
+			
+			if (cNums.contains(i)) {
+				for (Player p : arena.getPlayers()) {
+					p.sendMessage(Main.info + "The game will begin in " + i + " seconds!");
+					p.setLevel(i);
 				}
 			}
 			

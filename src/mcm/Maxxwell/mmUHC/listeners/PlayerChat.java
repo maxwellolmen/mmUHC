@@ -7,6 +7,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 public class PlayerChat implements Listener {
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
-		String name = e.getPlayer().getName();
+		
 	}
 }

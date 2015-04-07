@@ -20,7 +20,7 @@ public class ScoreboardUpdater extends Thread {
 	}
 	
 	public void run() {
-		board.registerNewObjective(arena.getID(), "dummy");
+		Objective obj = board.registerNewObjective(arena.getID(), "dummy");
 		
 		while (true) {
 			board.resetScores(ChatColor.GRAY + "Awaiting Players");
@@ -34,7 +34,6 @@ public class ScoreboardUpdater extends Thread {
 				board.resetScores(ChatColor.GREEN + "Players: " + i);
 			}
 			
-			Objective obj = board.getObjective(arena.getID());
 			obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 			
 			Score state;

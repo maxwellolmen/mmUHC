@@ -15,6 +15,7 @@ public class ForceStart extends GameCommand {
 	public void onCommand(Player p, String[] args) {
 		if (args.length == 0) {
 			p.sendMessage(Main.warning + "You must specify the arena to start.");
+			return;
 		}
 		
 		Arena a = ArenaManager.getInstance().getArena(args[0]);

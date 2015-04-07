@@ -55,6 +55,8 @@ public class Arena {
 		this.su = new ScoreboardUpdater(this);
 		
 		su.start();
+		
+		this.world.getWorldBorder().setSize(1000);
 	}
 	
 	public String getID() {
@@ -100,6 +102,12 @@ public class Arena {
 		
 		p.getInventory().clear();
 		
+		p.setGameMode(GameMode.SURVIVAL);
+		
+		p.setHealth(20.0D); 
+		
+		p.setFoodLevel(20);
+		
 		p.sendMessage(Main.good + "You have joined arena " + id + ".");
 		
 		if (players.size() >= 10 && state == ArenaState.WAITING) {
@@ -129,12 +137,12 @@ public class Arena {
 				
 				if (!SettingsManager.getConfig().contains("lobby")) {
 					players.get(0).getInventory().clear();
-					players.get(0).setGameMode(GameMode.SPECTATOR);
+					players.get(0).setGameMode(GameMode.CREATIVE);
 					Bukkit.getLogger().warning("There is no lobby set. A player has been kicked from the server by default.");
 					players.get(0).kickPlayer(ChatColor.RED + "You have been removed from the game!");
 				} else {
 					players.get(0).getInventory().clear();
-					players.get(0).setGameMode(GameMode.SPECTATOR);
+					players.get(0).setGameMode(GameMode.CREATIVE);
 					players.get(0).teleport(Main.loadLocation(SettingsManager.getConfig().<ConfigurationSection>get("lobby")));
 				}
 				
